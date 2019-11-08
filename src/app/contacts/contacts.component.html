@@ -1,0 +1,42 @@
+<div class="container spacer">
+  <div class="card card.bg-primary.text-white">
+    <div class="card card-header">Liste des contacts</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label>Mot Clé :</label>
+        <input type="text" [(ngModel)]="motCle">
+        <button class="btn btn-primary" (click)="chercher()">Chercher</button>
+      </div>
+      <table class="table table-striped">
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Edition</th>
+          <th>Suppression</th>
+        </tr>
+        <tr *ngFor="let c of pageContacts?.content">
+          <th>{{c.id}}</th>
+          <th>{{c.nom}}</th>
+          <th>{{c.prenom}}</th>
+          <th>{{c.email}}</th>
+          <th>
+            <a (click)="onEditContact(c.id)" class="cliquable">Edit</a>
+          </th>
+          <th>
+            <a (click)="onDeleteContact(c)" class="cliquable">Delete</a>
+          </th>
+        </tr>
+      </table>
+      <div class="container">
+        <ul class="nav nav-pills justify-content-center">
+          <li class="nav-item" *ngFor="let p of pages; let i=index">
+            <a class="nav-link" [ngClass]="{'active':i==currentPage}" (click)="gotoPage(i)" [routerLink]="">{{i+1}}</a>
+            <!-- on peut mettre la class cliquable à la place de routerLink, les chiffre seront en noir-->
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
